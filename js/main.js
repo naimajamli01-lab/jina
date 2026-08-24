@@ -146,12 +146,8 @@ $$('.sec-head, .atelier__text, .atelier__stack, .news__inner, .foot__top, .look_
     requestAnimationFrame(raf);
   })();
 
-  /* parallaxe verticale douce sur les cartes */
-  addEventListener('scroll', () => {
-    const y = clamp(scrollY / innerHeight, 0, 1);
-    scene.style.setProperty('opacity', String(1 - y * .55));
-    stage.style.setProperty('filter', `blur(${y * 3}px)`);
-  }, { passive: true });
+  /* Pas de flou ni de fondu au défilement : le hero reste net jusqu'en haut
+     de l'écran. C'était aussi coûteux en performances sur mobile. */
 })();
 
 /* ═══════ 8. MARQUEES ═══════ */

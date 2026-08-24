@@ -209,7 +209,7 @@ html[data-theme="night"] .nav__logo img,html[data-theme="night"] .foot__logo{fil
 #checkPatCream .ck2{fill:var(--cream)}
 #ditsyPat .dz{--petal:#FFFBEA;--heart:#EDB601;--leaf:#B26CC4;--outline:#5B2E6B}
 
-.wcheck,.ditsy,.burst,.daisy,.retro{position:absolute;pointer-events:none}
+.wcheck,.ditsy,.burst,.daisy,.retro{position:absolute;pointer-events:none;z-index:0}
 .wcheck{opacity:.5}
 .ditsy{opacity:.55}
 html[data-theme="night"] .wcheck{opacity:.28}
@@ -229,7 +229,7 @@ html[data-theme="night"] .ditsy{opacity:.3}
 .retro--h1{width:96px;height:96px;top:34%;left:-7%;--petal:var(--plum);--heart:var(--lemon);animation:spinSlow 26s linear infinite}
 @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -14px}}
 
-.daisy--c1{width:74px;height:74px;top:9%;right:6%;rotate:14deg;--heart:var(--gold);z-index:2}
+.daisy--c1{width:74px;height:74px;top:9%;right:6%;rotate:14deg;--heart:var(--gold)}
 .ditsy--coll{top:0;left:-4%;width:min(20vw,260px);height:min(40vw,520px);
   -webkit-mask-image:linear-gradient(to right,#000,transparent);mask-image:linear-gradient(to right,#000,transparent)}
 .retro--s1{width:120px;height:120px;top:5%;right:3%;--petal:var(--lemon);--heart:var(--plum);animation:spinSlow 30s linear infinite reverse}
@@ -238,8 +238,8 @@ html[data-theme="night"] .ditsy{opacity:.3}
 .daisy--a1{width:70px;height:70px;bottom:8%;left:2%;rotate:22deg;--heart:var(--gold)}
 .wcheck--news{inset:0;width:100%;height:100%;opacity:.5;
   -webkit-mask-image:linear-gradient(to bottom,#000,transparent 82%);mask-image:linear-gradient(to bottom,#000,transparent 82%)}
-.daisy--n1{width:88px;height:88px;top:12%;left:7%;rotate:-14deg;--heart:var(--gold);z-index:3}
-.retro--n1{width:96px;height:96px;bottom:16%;right:6%;--petal:var(--lemon);--heart:var(--plum);z-index:3;animation:spinSlow 24s linear infinite}
+.daisy--n1{width:88px;height:88px;top:12%;left:7%;rotate:-14deg;--heart:var(--gold)}
+.retro--n1{width:96px;height:96px;bottom:16%;right:6%;--petal:var(--lemon);--heart:var(--plum);animation:spinSlow 24s linear infinite}
 
 /* papier déchiré entre les sections */
 .tear{position:absolute;left:0;width:100%;height:clamp(30px,4.2vw,64px);z-index:6;pointer-events:none;fill:var(--bg)}
@@ -353,7 +353,7 @@ html[data-theme="night"] .fcard img{filter:saturate(1.08) brightness(.9)}
 .marquee__track b{font-size:15px;color:var(--lilac-600)}
 
 /* ═══════════ TITRES SECTION ═══════════ */
-.sec-head{padding:clamp(70px,9vw,130px) var(--gut) 0;max-width:1440px;margin:0 auto}
+.sec-head{position:relative;z-index:2;padding:clamp(70px,9vw,130px) var(--gut) 0;max-width:1440px;margin:0 auto}
 .sec-head--row{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-end;justify-content:space-between}
 .tag{
   display:inline-block;padding:7px 15px;border-radius:999px;
@@ -432,7 +432,7 @@ html[data-theme="night"] .ph img{filter:brightness(.92) saturate(1.05)}
 .filters button.is-on{background:var(--lilac);border-color:var(--ink);color:var(--ink);box-shadow:3px 3px 0 var(--ink)}
 
 .grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(230px,25vw,290px),1fr));
+  position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(230px,25vw,290px),1fr));
   gap:clamp(14px,1.7vw,26px);padding:38px var(--gut) 0;max-width:1440px;margin:0 auto;
 }
 .card{
@@ -509,7 +509,7 @@ html[data-theme="night"] .look{background:#0E0616}
 
 /* ═══════════ ATELIER ═══════════ */
 .atelier{position:relative;overflow:hidden;padding:clamp(70px,9vw,130px) var(--gut)}
-.atelier__grid{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
+.atelier__grid{position:relative;z-index:2;max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
 .atelier__text>p{max-width:46ch;margin:22px 0 34px;color:var(--fg-soft);font-size:16px}
 .atelier__list{display:grid;gap:20px}
 .atelier__list li{display:flex;gap:18px;padding-top:20px;border-top:1.5px solid var(--line)}
@@ -532,7 +532,7 @@ html[data-theme="night"] .look{background:#0E0616}
 /* ═══════════ MUR D'AVIS ═══════════ */
 .wall{position:relative;padding-bottom:clamp(60px,8vw,110px)}
 .wall__grid{
-  max-width:1440px;margin:26px auto 0;padding:0 var(--gut);
+  position:relative;z-index:2;max-width:1440px;margin:26px auto 0;padding:0 var(--gut);
   display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;
 }
 .note{
@@ -672,6 +672,11 @@ html[data-theme="night"] .look{background:#0E0616}
   .atelier__stack{order:-1;height:min(70vw,440px)}
 }
 @media (max-width:860px){
+  /* En une seule colonne, ces fleurs tombent dans la colonne de texte.
+     Les fonds (damier, semis, arcs) et les fleurs du hero, elles, restent :
+     elles ne se posent jamais sur du texte. */
+  .daisy--c1,.daisy--s1,.retro--s1,.daisy--a1,.daisy--n1,.retro--n1{display:none}
+
   .nav__links{display:none}
   .burger{display:flex}
   .chip__txt{display:none}
