@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>JINA — Vêtements Femme · Maison de couleur</title>
+<meta name="description" content="JINA — maison de mode féminine. Silhouettes sculptées, couleurs saturées, éditions limitées. Une expérience de shopping en trois dimensions." />
+<meta name="theme-color" content="#BF9ADD" />
+<link rel="icon" href="assets/jina-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ═══════════ SPRITE : MOTIFS COLLAGE ═══════════ -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- ondulation façon papier gaufré -->
+    <filter id="warp" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.009 0.016" numOctaves="2" seed="7" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="46" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="warpSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.006 0.011" numOctaves="2" seed="3" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="34" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <!-- damier -->
+    <pattern id="checkPat" width="88" height="88" patternUnits="userSpaceOnUse">
+      <rect class="ck" width="44" height="44"/>
+      <rect class="ck" x="44" y="44" width="44" height="44"/>
+    </pattern>
+    <pattern id="checkPatCream" width="88" height="88" patternUnits="userSpaceOnUse">
+      <rect class="ck2" width="44" height="44"/>
+      <rect class="ck2" x="44" y="44" width="44" height="44"/>
+    </pattern>
+    <!-- semis de marguerites -->
+    <pattern id="ditsyPat" width="110" height="110" patternUnits="userSpaceOnUse">
+      <g class="dz"><use href="#i-daisy" x="6"  y="4"  width="34" height="34"/>
+                     <use href="#i-daisy" x="62" y="34" width="26" height="26"/>
+                     <use href="#i-daisy" x="26" y="66" width="30" height="30"/>
+                     <use href="#i-leaf"  x="76" y="76" width="24" height="24"/>
+                     <use href="#i-leaf"  x="2"  y="44" width="20" height="20"/></g>
+    </pattern>
+  </defs>
+
+  <symbol id="i-daisy" viewBox="0 0 100 100">
+    <g class="petals" fill="var(--petal,#FFFBEA)" stroke="var(--outline,#2E1A38)" stroke-width="3">
+      <ellipse cx="50" cy="24" rx="11" ry="24"/>
+      <ellipse cx="50" cy="24" rx="11" ry="24" transform="rotate(45 50 50)"/>
+      <ellipse cx="50" cy="24" rx="11" ry="24" transform="rotate(90 50 50)"/>
+      <ellipse cx="50" cy="24" rx="11" ry="24" transform="rotate(135 50 50)"/>
+      <ellipse cx="50" cy="24" rx="11" ry="24" transform="rotate(180 50 50)"/>
+      <ellipse cx="50" cy="24" rx="11" ry="24" transform="rotate(225 50 50)"/>
+      <ellipse cx="50" cy="24" rx="11" ry="24" transform="rotate(270 50 50)"/>
+      <ellipse cx="50" cy="24" rx="11" ry="24" transform="rotate(315 50 50)"/>
+    </g>
+    <circle class="heart" cx="50" cy="50" r="15" fill="var(--heart,#EDB601)" stroke="var(--outline,#2E1A38)" stroke-width="3"/>
+  </symbol>
+
+  <symbol id="i-flower" viewBox="0 0 100 100">
+    <g class="petals" fill="var(--petal,#B26CC4)" stroke="var(--outline,#2E1A38)" stroke-width="3">
+      <circle cx="50" cy="22" r="24"/>
+      <circle cx="76" cy="41" r="24"/>
+      <circle cx="66" cy="72" r="24"/>
+      <circle cx="34" cy="72" r="24"/>
+      <circle cx="24" cy="41" r="24"/>
+    </g>
+    <circle class="heart" cx="50" cy="50" r="15" fill="var(--heart,#5B2E6B)" stroke="var(--outline,#2E1A38)" stroke-width="3"/>
+  </symbol>
+
+  <symbol id="i-leaf" viewBox="0 0 100 100">
+    <path class="petals" fill="var(--leaf,#B26CC4)" d="M50,8 C82,30 82,70 50,92 C18,70 18,30 50,8 Z"/>
+  </symbol>
+
+  <symbol id="i-burst" viewBox="0 0 240 124">
+    <g fill="none" stroke="var(--burst,#EDB601)" stroke-width="11" stroke-linecap="round">
+      <path d="M12,120 A108,108 0 0 1 228,120"/>
+      <path d="M40,120 A80,80 0 0 1 200,120"/>
+      <path d="M68,120 A52,52 0 0 1 172,120"/>
+      <path d="M96,120 A24,24 0 0 1 144,120"/>
+    </g>
+  </symbol>
+</svg>
+
+<!-- ═══════════ GRAIN + CURSEUR ═══════════ -->
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true">
+  <span class="cursor__flower">
+    <svg viewBox="0 0 100 100"><use href="#i-daisy"/></svg>
+    <em class="cursor__label"></em>
+  </span>
+</div>
+<div class="scroll-bar" aria-hidden="true"><i></i></div>
+
+<!-- ═══════════ PRELOADER ═══════════ -->
+<div class="loader" id="loader">
+  <div class="loader__blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="loader__inner">
+    <img src="assets/jina-logo.png" alt="" class="loader__logo" />
+    <div class="loader__word" aria-hidden="true">
+      <span>M</span><span>A</span><span>I</span><span>S</span><span>O</span><span>N</span>
+      <span class="sp"></span>
+      <span>D</span><span>E</span>
+      <span class="sp"></span>
+      <span>C</span><span>O</span><span>U</span><span>L</span><span>E</span><span>U</span><span>R</span>
+    </div>
+    <div class="loader__track"><i id="loaderBar"></i></div>
+  </div>
+</div>
+
+<!-- ═══════════ NAV ═══════════ -->
+<header class="nav" id="nav">
+  <a href="#hero" class="nav__logo" data-cursor="Accueil">
+    <img src="assets/jina-logo.png" alt="JINA" />
+  </a>
+  <nav class="nav__links" aria-label="Navigation principale">
+    <a href="#collections" data-magnetic>Collections</a>
+    <a href="#boutique" data-magnetic>Boutique</a>
+    <a href="#lookbook" data-magnetic>Lookbook</a>
+    <a href="#atelier" data-magnetic>Atelier</a>
+  </nav>
+  <div class="nav__actions">
+    <button class="chip chip--ghost" id="themeToggle" data-cursor="Ambiance" aria-label="Changer l'ambiance">
+      <span class="chip__dot"></span><span class="chip__txt">Nuit</span>
+    </button>
+    <button class="chip chip--solid" id="cartBtn" data-cursor="Panier" aria-label="Ouvrir le panier">
+      Panier <b id="cartCount">0</b>
+    </button>
+    <button class="burger" id="burger" aria-label="Menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#collections">Collections</a>
+  <a href="#boutique">Boutique</a>
+  <a href="#lookbook">Lookbook</a>
+  <a href="#atelier">Atelier</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<main>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="hero">
+  <div class="hero__deco" aria-hidden="true">
+    <span class="blob blob--1"></span>
+    <span class="blob blob--2"></span>
+    <span class="blob blob--3"></span>
+    <svg class="wcheck wcheck--hero" viewBox="0 0 900 900" preserveAspectRatio="xMidYMid slice"><rect x="-160" y="-160" width="1220" height="1220" fill="url(#checkPat)" filter="url(#warp)"/></svg>
+    <svg class="ditsy ditsy--hero" viewBox="0 0 500 700" preserveAspectRatio="xMidYMid slice"><rect x="-80" y="-80" width="660" height="860" fill="url(#ditsyPat)" filter="url(#warpSoft)"/></svg>
+    <svg class="burst burst--hero" viewBox="0 0 240 124"><use href="#i-burst"/></svg>
+  </div>
+
+  <div class="hero__stage" id="heroStage">
+    <div class="hero__scene" id="heroScene">
+
+      <div class="hero__type" data-depth="10">
+        <span class="hero__eyebrow">Automne — Hiver · Édition 01</span>
+        <h1 class="hero__title">
+          <span class="line"><em class="w w--fill">Habille</em></span>
+          <span class="line"><em class="w">ta</em> <em class="w w--serif">couleur</em></span>
+          <span class="line"><em class="w w--outline">préférée</em></span>
+        </h1>
+        <p class="hero__lede">Des silhouettes sculptées pour les femmes qui n'ont jamais choisi le beige. Fabriqué en petites séries, teint à la main, pensé pour durer.</p>
+        <div class="hero__cta">
+          <a href="#boutique" class="btn btn--primary" data-magnetic data-cursor="Voir">Découvrir la boutique</a>
+          <a href="#lookbook" class="btn btn--line" data-magnetic data-cursor="Lookbook">Le lookbook →</a>
+        </div>
+        <ul class="hero__stats">
+          <li><b>24</b><span>pièces en série limitée</span></li>
+          <li><b>100%</b><span>tissus naturels certifiés</span></li>
+          <li><b>XS–4XL</b><span>toutes les silhouettes</span></li>
+        </ul>
+      </div>
+
+      <div class="hero__cards" aria-hidden="true">
+        <figure class="fcard fcard--a" data-depth="40">
+          <img src="assets/hero/hero-safran.jpg" alt="" fetchpriority="high" />
+          <span class="fcard__tint"></span>
+        </figure>
+        <figure class="fcard fcard--b" data-depth="70">
+          <img src="assets/hero/hero-lavande.jpg" alt="" fetchpriority="high" />
+          <span class="fcard__tint"></span>
+        </figure>
+        <figure class="fcard fcard--c" data-depth="25">
+          <img src="assets/hero/hero-fraise.jpg" alt="" fetchpriority="high" />
+          <span class="fcard__tint"></span>
+        </figure>
+        <div class="sticker sticker--a" data-depth="90"><span>Édition<br>limitée</span></div>
+        <svg class="daisy daisy--h1" viewBox="0 0 100 100" data-depth="110"><use href="#i-daisy"/></svg>
+        <svg class="daisy daisy--h2" viewBox="0 0 100 100" data-depth="55"><use href="#i-daisy"/></svg>
+        <svg class="retro retro--h1" viewBox="0 0 100 100" data-depth="95"><use href="#i-flower"/></svg>
+      </div>
+
+      <div class="badge-rotate" data-depth="80" aria-hidden="true">
+        <svg viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0" /></defs>
+          <!-- textLength = circonférence du cercle (2π×72) : le texte se répartit
+               exactement sur le tour, quelle que soit la longueur des mots -->
+          <text><textPath href="#circ" textLength="452" lengthAdjust="spacing">· JINA · MAISON DE COULEUR · TUNISIE · JINA · MAISON DE COULEUR · TUNISIE </textPath></text>
+        </svg>
+        <b>↓</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__scrollhint" aria-hidden="true"><i></i>Faites défiler</div>
+</section>
+
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="marquee marquee--lemon" aria-hidden="true">
+  <div class="marquee__track" data-marquee>
+    <span>Livraison offerte dès 150 TND</span><b>✦</b>
+    <span>Teinture artisanale</span><b>✿</b>
+    <span>Coupes inclusives XS → 4XL</span><b>✦</b>
+    <span>Retours 30 jours</span><b>✿</b>
+    <span>Livraison offerte dès 150 TND</span><b>✦</b>
+    <span>Teinture artisanale</span><b>✿</b>
+    <span>Coupes inclusives XS → 4XL</span><b>✦</b>
+    <span>Retours 30 jours</span><b>✿</b>
+  </div>
+</div>
+
+<!-- ═══════════ COLLECTIONS — CAROUSEL 3D ═══════════ -->
+<section class="collections" id="collections">
+  <svg class="ditsy ditsy--coll" viewBox="0 0 420 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect x="-80" y="-80" width="580" height="780" fill="url(#ditsyPat)" filter="url(#warpSoft)"/></svg>
+  <svg class="daisy daisy--c1" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-daisy"/></svg>
+  <div class="sec-head">
+    <span class="tag tag--lilac">01 — Collections</span>
+    <h2 class="sec-title">Six <em>humeurs</em>,<br>une seule maison.</h2>
+    <p class="sec-sub">Faites glisser le cylindre. Ou laissez le défilement le faire tourner pour vous.</p>
+  </div>
+
+  <div class="ring3d" id="ring3d">
+    <div class="ring3d__stage">
+      <div class="ring3d__cyl" id="ringCyl"></div>
+    </div>
+    <div class="ring3d__ui">
+      <button class="round-btn" data-ring="-1" aria-label="Précédent">←</button>
+      <div class="ring3d__meta">
+        <h3 id="ringName">—</h3>
+        <p id="ringDesc">—</p>
+      </div>
+      <button class="round-btn" data-ring="1" aria-label="Suivant">→</button>
+    </div>
+    <p class="ring3d__hint">glisser · <i>drag</i></p>
+  </div>
+</section>
+
+<!-- ═══════════ BOUTIQUE ═══════════ -->
+<section class="shop" id="boutique">
+  <svg class="retro retro--s1" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-flower"/></svg>
+  <svg class="daisy daisy--s1" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-daisy"/></svg>
+  <div class="sec-head sec-head--row">
+    <div>
+      <span class="tag tag--lemon">02 — Boutique</span>
+      <h2 class="sec-title">La garde-robe<br><em>maximaliste.</em></h2>
+    </div>
+    <div class="filters" id="filters" role="tablist" aria-label="Filtrer par catégorie"></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="shop__more">
+    <button class="btn btn--primary" id="loadMore" data-magnetic data-cursor="Encore">Charger plus de pièces</button>
+  </div>
+</section>
+
+<!-- ═══════════ LOOKBOOK HORIZONTAL ═══════════ -->
+<section class="look" id="lookbook">
+  <svg class="tear tear--top" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0,0 H1200 V24 L1160,12 L1118,29 L1076,15 L1034,32 L992,17 L950,34 L906,19 L864,36 L820,21 L778,38 L734,23 L692,40 L648,25 L604,42 L560,27 L516,44 L472,29 L428,41 L384,26 L340,39 L296,24 L252,37 L208,22 L164,35 L120,20 L76,33 L34,19 L0,31 Z"/></svg>
+  <svg class="tear tear--bottom" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0,0 H1200 V24 L1160,12 L1118,29 L1076,15 L1034,32 L992,17 L950,34 L906,19 L864,36 L820,21 L778,38 L734,23 L692,40 L648,25 L604,42 L560,27 L516,44 L472,29 L428,41 L384,26 L340,39 L296,24 L252,37 L208,22 L164,35 L120,20 L76,33 L34,19 L0,31 Z"/></svg>
+  <div class="look__sticky">
+    <div class="look__head">
+      <span class="tag tag--mint">03 — Lookbook</span>
+      <h2 class="sec-title">Série <em>Kaléido</em></h2>
+    </div>
+    <div class="look__rail" id="lookRail"></div>
+    <div class="look__progress"><i id="lookBar"></i></div>
+  </div>
+</section>
+
+<!-- ═══════════ ATELIER ═══════════ -->
+<section class="atelier" id="atelier">
+  <svg class="burst burst--at" viewBox="0 0 240 124" aria-hidden="true"><use href="#i-burst"/></svg>
+  <svg class="daisy daisy--a1" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-daisy"/></svg>
+  <div class="atelier__grid">
+    <div class="atelier__text">
+      <span class="tag tag--pink">04 — Atelier</span>
+      <h2 class="sec-title">Nous teignons<br>avant de <em>couper.</em></h2>
+      <p>Chaque rouleau part chez notre teinturier à Ksar Hellal avant d'entrer dans l'atelier. C'est plus lent, plus cher, et c'est exactement pourquoi deux robes JINA ne sont jamais tout à fait identiques.</p>
+      <ul class="atelier__list">
+        <li><b>01</b><div><h4>Teinture</h4><p>Bains végétaux, séries de 40 mètres maximum.</p></div></li>
+        <li><b>02</b><div><h4>Patronage</h4><p>Gradation testée sur cinq morphologies réelles.</p></div></li>
+        <li><b>03</b><div><h4>Assemblage</h4><p>Six couturières, un atelier, zéro sous-traitance.</p></div></li>
+      </ul>
+    </div>
+    <div class="atelier__stack" id="atelierStack" aria-hidden="true">
+      <div class="scard scard--1"></div>
+      <div class="scard scard--2"></div>
+      <div class="scard scard--3"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ MUR D'AVIS ═══════════ -->
+<section class="wall">
+  <div class="sec-head"><span class="tag tag--lilac">05 — Elles portent JINA</span></div>
+  <div class="wall__grid" id="wallGrid"></div>
+</section>
+
+<!-- ═══════════ NEWSLETTER ═══════════ -->
+<section class="news" id="contact">
+  <svg class="tear tear--top" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0,0 H1200 V24 L1160,12 L1118,29 L1076,15 L1034,32 L992,17 L950,34 L906,19 L864,36 L820,21 L778,38 L734,23 L692,40 L648,25 L604,42 L560,27 L516,44 L472,29 L428,41 L384,26 L340,39 L296,24 L252,37 L208,22 L164,35 L120,20 L76,33 L34,19 L0,31 Z"/></svg>
+  <svg class="wcheck wcheck--news" viewBox="0 0 900 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect x="-160" y="-160" width="1220" height="820" fill="url(#checkPatCream)" filter="url(#warp)"/></svg>
+  <svg class="daisy daisy--n1" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-daisy"/></svg>
+  <svg class="retro retro--n1" viewBox="0 0 100 100" aria-hidden="true"><use href="#i-flower"/></svg>
+  <div class="news__inner">
+    <h2 class="news__title">Entrez dans<br>la <em>couleur.</em></h2>
+    <p>Les éditions limitées partent en 48 h. La liste passe en premier.</p>
+    <form class="news__form" id="newsForm" novalidate>
+      <input type="email" id="newsEmail" placeholder="votre@email.com" aria-label="Votre email" required />
+      <button class="btn btn--dark" type="submit" data-magnetic data-cursor="Envoyer">S'inscrire</button>
+    </form>
+    <small id="newsMsg"></small>
+  </div>
+  <div class="news__marquee" aria-hidden="true"><div class="marquee__track" data-marquee><span>JINA</span><b>✿</b><span>JINA</span><b>✦</b><span>JINA</span><b>✿</b><span>JINA</span><b>✦</b><span>JINA</span><b>✿</b><span>JINA</span><b>✦</b></div></div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="foot">
+  <div class="foot__top">
+    <img src="assets/jina-logo.png" alt="JINA" class="foot__logo" />
+    <div class="foot__cols">
+      <div><h5>Boutique</h5><a href="#boutique">Pulls</a><a href="#boutique">Manteaux</a><a href="#boutique">Ensembles</a></div>
+      <div><h5>Maison</h5><a href="#atelier">Atelier</a><a href="#lookbook">Lookbook</a><a href="#collections">Collections</a></div>
+      <div><h5>Aide</h5><a href="#contact">Livraison</a><a href="#contact">Retours</a><a href="#contact">Guide des tailles</a></div>
+      <div><h5>Suivre</h5><a href="#contact">Instagram</a><a href="#contact">Pinterest</a><a href="#contact">TikTok</a></div>
+    </div>
+  </div>
+  <div class="foot__bottom">
+    <span>© 2026 JINA — Maison de couleur</span>
+    <span class="foot__by">Site créé par <b>Naima Jamli</b></span>
+    <span>Tunisie · Ksar Hellal</span>
+  </div>
+</footer>
+
+</main>
+
+<!-- ═══════════ QUICK VIEW ═══════════ -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Aperçu du produit">
+  <div class="modal__scrim" data-close></div>
+  <div class="modal__box">
+    <button class="modal__x" data-close aria-label="Fermer">✕</button>
+    <div class="modal__visual" id="modalVisual"></div>
+    <div class="modal__info">
+      <span class="tag tag--lilac" id="modalCat"></span>
+      <h3 id="modalName"></h3>
+      <p class="modal__price" id="modalPrice"></p>
+      <p class="modal__desc" id="modalDesc"></p>
+      <div class="modal__row"><h6>Coloris</h6><div class="swatches" id="modalSwatches"></div></div>
+      <div class="modal__row"><h6>Taille</h6><div class="sizes" id="modalSizes"></div></div>
+      <button class="btn btn--primary btn--full" id="modalAdd" data-cursor="Ajouter">Ajouter au panier</button>
+      <ul class="modal__perks"><li>Livraison 48 h</li><li>Retours offerts</li><li>Teint à la main</li></ul>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Panier">
+  <div class="drawer__scrim" data-close-cart></div>
+  <aside class="drawer__box">
+    <header><h3>Votre panier</h3><button data-close-cart aria-label="Fermer">✕</button></header>
+    <div class="drawer__items" id="cartItems"></div>
+    <footer>
+      <div class="drawer__total"><span>Total</span><b id="cartTotal">0 TND</b></div>
+      <button class="btn btn--primary btn--full" id="checkout">Passer commande</button>
+      <small>Livraison offerte dès 150 TND · Retours 30 jours</small>
+    </footer>
+  </aside>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
+tte 
